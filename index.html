@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Cardona - Analista de Datos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Favicon para navegadores modernos -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <!-- Favicon para versiones antiguas de IE -->
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <!-- Opcional: Para otros formatos y tamaños -->
+    <link rel="icon" sizes="32x32" type="image/png" href="img/logo.png">
+    <link rel="icon" sizes="16x16" type="image/png" href="img/logo.png">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .navbar, .footer {
+            background-color: #4078C0;
+            color: white;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .navbar-nav .nav-link:hover {
+            position: relative;
+        }
+        .navbar-nav .nav-link:hover::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            z-index: -1;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .jumbotron {
+            background-color: #4078C0;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #305A91;
+            border-color: #305A91;
+        }
+        .btn-primary:hover {
+            background-color: #203B61;
+            border-color: #203B61;
+        }
+        .btn-secondary {
+            background-color: #5B9BD5;
+            border-color: #5B9BD5;
+        }
+        .btn-secondary:hover {
+            background-color: #4078C0;
+            border-color: #4078C0;
+        }
+        .btn-success {
+            background-color: #8CB1E6;
+            border-color: #8CB1E6;
+        }
+        .btn-success:hover {
+            background-color: #5B9BD5;
+            border-color: #5B9BD5;
+        }
+        .project-img {
+            max-width: 100%;
+            height: auto;
+        }
+        .footer {
+            padding: 20px 0;
+            text-align: center;
+        }
+        .contact-btns .btn {
+            margin: 0 10px;
+        }
+
+        .timeline {
+        position: relative;
+        padding: 1em 0;
+        margin-top: 2em;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 2em;
+        }
+
+        .timeline-icon {
+            background-color: #305A91;
+            color: #fff;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            height: 50px;
+            width: 50px;
+            margin-right: 1em;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content h3 {
+            margin-top: 0;
+        }
+
+        .jumbotron .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+            padding-top: 20px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .cert-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .cert-icon {
+            font-size: 40px;
+            color: #4078C0;
+        }
+
+        .language-switcher {
+            position: right;
+            top: 10px;
+            right: 10px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Logo" style="height: 45px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Home Barra de navegacion español e inglés-->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about" data-lang="es">Sobre mí</a>
+                    <a class="nav-link" href="#about" data-lang="en">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projects" data-lang="es">Proyectos</a>
+                    <a class="nav-link" href="#projects" data-lang="en">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#resume" data-lang="es">Currículum</a>
+                    <a class="nav-link" href="#resume" data-lang="en">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact" data-lang="es">Contacto</a>
+                    <a class="nav-link" href="#contact" data-lang="en">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div class="language-switcher">
+            <button class="btn btn-primary" onclick="setLanguage('es')">Español</button>
+            <button class="btn btn-primary" onclick="setLanguage('en')">English</button>
+        </div>
+    </nav>
+
+    <!-- Home -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div>
+                <h1 class="display-4" data-lang="es">Carlos Cardona</h1>
+                <p class="lead" data-lang="es">Analista de Datos | Desarrollador</p>
+                <a class="btn btn-primary btn-lg" href="#about" role="button" data-lang="es" >Conoce más sobre mí</a>
+                <h1 class="display-4 d-none" data-lang="en">Carlos Cardona</h1>
+                <p class="lead d-none" data-lang="en">Data Analyst | Developer</p>
+                <a class="btn btn-primary btn-lg d-none" href="#about" role="button" data-lang="en">Learn more about me</a>
+            </div>
+            <img src="img/avatar.png" alt="Mi avatar" class="avatar" >
+        </div>
+    </div>s
+
+    <!-- About -->
+    <section id="about" class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 col-12 mb-3 text-center">
+                <img src="img/profile.jpg" class="img-fluid rounded-circle" alt="Carlos Cardona">
+            </div>
+            <div class="col-md-8 col-12">
+                <h3 class="text-center" style="color: #4078C0; align-items: right;" data-lang="es">Acerca de mí</h3>
+                <p style="text-align: justify;" data-lang="es">¡Hola! Soy Carlos Cardona, un apasionado analista de datos con experiencia en programación y liderazgo de proyectos. He trabajado con tecnologías como SQL, Python, Tableau, Power BI, JavaScript y Laravel. Adicionalmente cuento con una certificación en análisis de datos de Google.</p>
+                <p style="text-align: justify;" data-lang="es">Mi objetivo es transformar los datos en información valiosa que pueda usarse para tomar decisiones estratégicas.</p>
+                <h3 class="text-center" style="color: #4078C0; align-items: right;" data-lang="en">About me</h3>
+                <p style="text-align: justify;" data-lang="en">Hello! I am Carlos Cardona, a passionate data analyst with experience in programming and project leadership. I have worked with technologies such as SQL, Python, Tableau, Power BI, JavaScript and Laravel. Additionally, I have a certification in data analysis from Google.</p>
+                <p style="text-align: justify;" data-lang="en">My goal is to transform data into valuable information that can be used to make strategic decisions.</p>
+                
+                <div class="text-center">
+                    <h3 style="color: #4078C0;" data-lang="es">Tecnologías que conozco 👨🏻‍💻</h3>
+                    <h3 style="color: #4078C0;" data-lang="en">Technologies I know 👨🏻‍💻</h3>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h4 data-lang="es">Lenguajes de Programación</h4>
+                            <h4 data-lang="en">Programming Lenguages</h4>
+                            <a href="https://www.python.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/python-original.svg" alt="Python" height="75"></a>
+                            <a href="https://www.r-project.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/r.svg" alt="R" height="75"></a>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4 data-lang="es">Bases de Datos</h4>
+                            <h4 data-lang="en">DataBases</h4>
+                            <a href="https://www.mysql.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg" alt="MySQL" height="75"></a>
+                            <a href="https://www.postgresql.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/postgresql-original-wordmark.svg" alt="PostgreSQL" height="75"></a>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4 data-lang="es">Herramientas de Visualización</h4>
+                            <h4 data-lang="en">Visualization tools</h4>
+                            <a href="https://www.tableau.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/tableau.svg" alt="Tableau" height="75"></a>
+                            <a href="https://powerbi.microsoft.com/en-us/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/powerbi.png" alt="Power BI" height="75"></a>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-sm-12">
+                            <h4 data-lang="es">Otras Herramientas</h4>
+                            <h4 data-lang="en">Other Tools</h4>
+                            <a href="https://getbootstrap.com/docs/3.4/javascript/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/bootstrap-plain.svg" alt="Bootstrap" height="50"></a>
+                            <a href="https://en.wikipedia.org/wiki/HTML5" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" height="50"></a>
+                            <a href="https://github.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/git-scm-icon.svg" alt="Git" height="50"></a>
+                            <a href="https://www.w3schools.com/css/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50"></a>
+                            <a href="https://about.gitlab.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/gitlab.svg" alt="GitLab" height="50"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Aqui estaba la parte de certificaciones -->
+            </div>
+        </div>
+    </section>
+    
+    <section class="container mt-5"> 
+        <!-- Experiencia Laboral -->
+        <h2 data-lang="es">Experiencia</h2>
+        <h2 data-lang="en">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="timeline-content" data-lang="es">
+                    <h3>Analista de Comercio Exterior</h3>
+                    <p>Entrada Group de México <br> (1 de Enero 2021 - 1 de Marzo de 2024)</p>
+                    <h6>Principales logros:</h6>
+                    <ul>
+                        <li>Presentación de resultados al equipo directivo usando Tableau</li>
+                        <li>Ahorro de más de $50,000 en impuestos para clientes gracias al análisis previo de exportaciones y creación de estrategias junto con el departamento de liderazgo</li>
+                        <li>Extracción, limpieza, transformación y análisis de datos de comercio exterior usando Excel, SQL y Python</li>
+                        <li>Ahorro de 60% en tiempo del procesamiento de datos mediante el uso de macros en excel y Power Automate</li>
+                    </ul>
+                </div>
+                <div class="timeline-content" data-lang="en">
+                    <h3>Foreign Trade Analyst</h3>
+                    <p>Entrada Group de México <br> (January 1, 2021 - March 1, 2024)</p>
+                    <h6>Main achievements:</h6>
+                    <ul>
+                        <li>Presenting results to the management team using Tableau</li>
+                        <li>Extraction, cleansing, transformation and analysis of foreign trade data using excel, SQL and Python</li>
+                        <li>Savings over 50,000 $ in taxes for clients thanks to export pre-analysis and strategy creation together with the leadership department</li>
+                        <li>60% savings in data processing time by using macros in excel and Power Automate</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="timeline-content" data-lang="es">
+                    <h3>Líder de Proyectos de Software</h3>
+                    <p>Concretos Lanzados Los Mochis <br> (Febrero 2020 - Septiembre 2020)</p>
+                    <h6>Principales logros:</h6>
+                    <ul>
+                        <li>Dirigí el desarrollo de un Sistema de Gestión de Recursos Humanos (HRMS).</li>
+                        <li>Utilicé JavaScript con Laravel, Git para el control de versiones y SQL para la gestión de bases de datos.</li>
+                        <li>Mantuve una comunicación clara con el departamento de gestión.</li>
+                        <li>Capacitación y Soporte: Brindé capacitación y soporte a los usuarios finales para una adopción fluida del HRMS.</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-content" data-lang="en">
+                    <h3>Software Project Leader</h3>
+                    <p>Concretos Lanzados Los Mochis <br> (February 2020 - September 2020)</p>
+                    <h6>Main achievements:</h6>
+                    <ul>
+                        <li>Led the development of a HumanResource Management System (HRMS).</li>
+                        <li>Utilized JavaScript with Laravel, Git for version control, and SQL for database management.</li>
+                        <li>Maintained clear communication with the management department.</li>
+                        <li>Provided training and support to end-users for smooth HRMS adoption.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Añadir más experiencias según sea necesario -->
+        </div>
+        <!-- Proyectos -->
+        <h2 id="projects" data-lang="es">Proyectos</h2>
+        <h2 id="projects" data-lang="en">Projects</h2>
+        <div class="row">
+            <div class="col-md-4 col-12 mb-3">
+                <div class="card mb-4">
+                    <img src="img/proyecto1.png" class="card-img-top project-img" alt="Proyecto 1" height="50px" >
+                    <div class="card-body">
+                        <h5 class="card-title" data-lang="es">Análisis de datos---Empresa-consultora</h5>
+                        <h5 class="card-title" data-lang="en">Data-Analysis---Consulting-Company</h5>
+                        <p class="card-text" data-lang="es">Herramientas y scripts para analizar datos de empleados, identificando disparidades salariales y sesgos de crecimiento entre departamentos para una empresa de consultoría.</p>
+                        <p class="card-text" data-lang="en">Tools and scripts to analyze employee data, identifying salary disparities and growth biases across departments for a consulting firm.</p>
+                        <h6 data-lang="es">Habilidades aplicadas:</h6>
+                        <h6 data-lang="en">Applied Skills:</h6>
+                        <ul data-lang="es">
+                            <li>Limpieza de datos usando SQL</li>
+                            <li>Análisis de datos exploratorios (EDA) usando SQL</li>
+                            <li>Visualización de datos (Tableau)</li>
+                            <li>Desarrollo de herramientas y scripts para análisis de datos. (Python)</li>
+                            <li>Detección de disparidades salariales (Tableau)</li>
+                            <li>Identificación de sesgos de crecimiento entre departamentos (Tableau)</li>
+                        </ul>
+                        <ul data-lang="en">
+                            <li>Data cleaning using SQL</li>
+                            <li>Exploratory Data Analysis (EDA) using SQL</li>
+                            <li>Data visualization (Tableau)</li>
+                            <li>Development of tools and scripts for data analysis (Python)</li>
+                            <li>Detection of salary disparities (Tableau)</li>
+                            <li>Identification of growth biases across departments (Tableau)</li>
+                        </ul>
+                        <a href="https://github.com/Qarant/Data-Analysis---Consulting-Company" target="_blank" class="btn btn-primary" data-lang="es">Ver más</a>
+                        <a href="https://github.com/Qarant/Data-Analysis---Consulting-Company" target="_blank" class="btn btn-primary" data-lang="en">See more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-12 mb-3">
+                <div class="card mb-4">
+                    <img src="img/alpes.png" class="card-img-top project-img" alt="Proyecto 2">
+                    <div class="card-body" data-lang="en">
+                        <h5 class="card-title" data-lang="en">Exploratory Analysis and Visualization of a Numerical Weather Prediction Model in the Alps</h5>
+                        <p class="card-text">This project uses Python to perform an exploratory analysis of a dataset representing a numerical weather prediction model in a mountainous region of the Alps. Through data analysis and the creation of visualizations, weather trends in this region are identified and observed. </p>
+                        <a href="https://github.com/Qarant/Alpes_dataSet_Viz" class="btn btn-primary" target="_blank">See more</a>
+                        <h6 data-lang="en">Applied Skills:</h6>
+                        <ul data-lang="en">
+                            <li>Análisis de datos exploratorios (EDA) using Python (Pandas library)</li>
+                            <li>Data Visualization using Python</li>
+                        </ul>
+                    </div>
+                    <div class="card-body" data-lang="es">
+                        <h5 class="card-title">Análisis exploratorio y visualización de un modelo numérico de predicción meteorológica en los Alpes</h5>
+                        <p class="card-text">Este proyecto utiliza Python para realizar un análisis exploratorio de un conjunto de datos que representa un modelo numérico de predicción del tiempo en una región montañosa de los Alpes. A través del análisis de datos y la creación de visualizaciones, se identifican y observan las tendencias climáticas en esta región. </p>
+                        <h6>Habilidades aplicadas:</h6>
+                        <ul>
+                            <li>Análisis de datos exploratorios (EDA) mediante Python (Libreria Pandas)</li>
+                            <li>Visualización de datos mediante Python</li>
+                        </ul>
+                        <a href="https://github.com/Qarant/Alpes_dataSet_Viz" target="_blank" class="btn btn-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Añadir más proyectos según sea necesario -->
+        </div>
+        <!-- Resume -->
+        <h2 id="resume" data-lang="es">Currículum</h2>
+        <h2 id="resume" data-lang="en">Resume</h2>
+        <a href="docs/Analista_Datos_CV_Carlos Antonio Cardona.pdf" target="_blank" download="Data_Analyst_CV_Carlos_Antonio_Cardona.pdf" class="btn btn-secondary mb-4" data-lang="es">Descargar CV</a>
+        <a href="docs/Data_Analyst_CV_Carlos Antonio Cardona.pdf" target="_blank" download="Data_Analyst_CV_Carlos_Antonio_Cardona.pdf" class="btn btn-secondary mb-4" data-lang="en">Download resume</a>
+        <!-- Educacion -->
+        <h3 data-lang="es">Educación</h3>
+        <h3 data-lang="en">Education</h3>
+        <ul data-lang="es">
+            <li><strong>Ingenieria en Sistemas Computacionales:</strong> (Titulado) - Instituto Tecnológico Superior de Fresnillo</li>
+            <!-- Añadir más detalles de educación -->
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Computer Systems Engineer:</strong> (Graduated) - Instituto Tecnológico Superior de Fresnillo</li>
+            <!-- Añadir más detalles de educación -->
+        </ul>
+    </section>
+
+    <!-- Certificaciones -->
+    <section>
+        <div class="container">
+            <h3 class="mt-4 text-center" style="color: #4078C0;" data-lang="es">Certificaciones</h3>
+            <h3 class="mt-4 text-center" style="color: #4078C0;" data-lang="en">Certifications</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-6" data-lang="en">
+                    <div class="cert-card text-center">
+                        <i class="fas fa-certificate cert-icon"></i>
+                        <h4 class="mt-2"><a href="https://www.coursera.org/account/accomplishments/professional-cert/SPE6CPN932TJ" target="_blank">Google Data Analytics Certification</a></h4>
+                        <p>Google Data Analytics Certification</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-lang="es">
+                    <div class="cert-card text-center">
+                        <i class="fas fa-certificate cert-icon"></i>
+                        <h4 class="mt-2"><a href="https://www.coursera.org/account/accomplishments/professional-cert/SPE6CPN932TJ" target="_blank">Certificación de análisis de datos de Google</a></h4>
+                        <p>Certificación de análisis de datos de Google</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container mt-5" data-lang="es">
+        <h2>Contacto</h2>
+        <div class="contact-btns text-center">
+            <a href="https://www.linkedin.com/in/c-cardona-c/" class="btn btn-primary btn-lg" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Qarant" class="btn btn-secondary btn-lg" target="_blank">GitHub</a>
+            <a href="mailto:carlos22ant@gmail.com" class="btn btn-success btn-lg">Correo Electrónico</a>
+        </div>
+    </section>
+    <section id="contact" class="container mt-5" data-lang="en">
+        <h2>Contact me</h2>
+        <div class="contact-btns text-center">
+            <a href="https://www.linkedin.com/in/c-cardona-c/" class="btn btn-primary btn-lg" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Qarant" class="btn btn-secondary btn-lg" target="_blank">GitHub</a>
+            <a href="mailto:carlos22ant@gmail.com" class="btn btn-success btn-lg">Email</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer mt-5" data-lang="es">
+        <div class="container">
+            <p>&copy; 2024 Carlos Cardona. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <footer class="footer mt-5" data-lang="en">
+        <div class="container">
+            <p>&copy; 2024 Carlos Cardona. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Funcionalidad de cambio de idioma -->
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.getAttribute('data-lang') === lang) {
+                    el.classList.remove('d-none');
+                } else {
+                    el.classList.add('d-none');
+                }
+            });
+        }
+
+        // Establece el idioma predeterminado a español
+        setLanguage('es');
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
