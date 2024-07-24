@@ -118,12 +118,22 @@
         justify-content: space-between;
         }
 
-        .avatar {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            animation: float 3s ease-in-out infinite;
-            padding-top: 20px;
+        @media (max-width: 576px) {
+        
+            .avatar {
+                max-width: 30%; /* Ajusta el tamaño de la imagen si es necesario */
+                margin: 
+                15 auto; /* Centra la imagen */
+            }
+            h1.display-4 {
+                font-size: 2.5rem; /* Ajusta el tamaño del texto para pantallas pequeñas */
+                line-height: 1.2; /* Ajusta la altura de la línea para evitar cortes */
+            }
+
+            .jumbotron {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
         }
 
         @keyframes float {
@@ -194,19 +204,24 @@
 
     <!-- Home -->
     <div class="jumbotron jumbotron-fluid">
-        <div class="container d-flex align-items-center justify-content-between">
-            <div>
-                <h1 class="display-4" data-lang="es">Carlos Cardona</h1>
-                <p class="lead" data-lang="es">Analista de Datos | Desarrollador</p>
-                <a class="btn btn-primary btn-lg" href="#about" role="button" data-lang="es" >Conoce más sobre mí</a>
-                <h1 class="display-4 d-none" data-lang="en">Carlos Cardona</h1>
-                <p class="lead d-none" data-lang="en">Data Analyst | Developer</p>
-                <a class="btn btn-primary btn-lg d-none" href="#about" role="button" data-lang="en">Learn more about me</a>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 text-center text-md-left">
+                    <h1 class="display-4 mb-3 mb-md-0" data-lang="es">Carlos Cardona</h1>
+                    <p class="lead" data-lang="es">Analista de Datos | Desarrollador</p>
+                    <a class="btn btn-primary btn-lg" href="#about" role="button" data-lang="es">Conoce más sobre mí</a>
+                    <h1 class="display-4 d-none" data-lang="en">Carlos Cardona</h1>
+                    <p class="lead d-none" data-lang="en">Data Analyst | Developer</p>
+                    <a class="btn btn-primary btn-lg d-none" href="#about" role="button" data-lang="en">Learn more about me</a>
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                    <img src="img/avatar.png" alt="Mi avatar" class="avatar img-fluid">
+                </div>
             </div>
-            <img src="img/avatar.png" alt="Mi avatar" class="avatar" >
         </div>
-    </div>s
-
+    </div>
+    
+    
     <!-- About -->
     <section id="about" class="container mt-5">
         <div class="row">
