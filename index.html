@@ -1,526 +1,973 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos Cardona - Analista de Datos</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Favicon para navegadores modernos -->
-    <link rel="icon" type="image/png" href="img/logo.png">
-    <!-- Favicon para versiones antiguas de IE -->
-    <link rel="icon" type="image/x-icon" href="img/logo.png">
-    <!-- Opcional: Para otros formatos y tamaños -->
-    <link rel="icon" sizes="32x32" type="image/png" href="img/logo.png">
-    <link rel="icon" sizes="16x16" type="image/png" href="img/logo.png">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .navbar, .footer {
-            background-color: #4078C0;
-            color: white;
-        }
-        .navbar-brand, .nav-link {
-            color: white !important;
-        }
-        .navbar-nav .nav-link:hover {
-            position: relative;
-        }
-        .navbar-nav .nav-link:hover::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            z-index: -1;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        .jumbotron {
-            background-color: #4078C0;
-            color: white;
-        }
-        .btn-primary {
-            background-color: #305A91;
-            border-color: #305A91;
-        }
-        .btn-primary:hover {
-            background-color: #203B61;
-            border-color: #203B61;
-        }
-        .btn-secondary {
-            background-color: #5B9BD5;
-            border-color: #5B9BD5;
-        }
-        .btn-secondary:hover {
-            background-color: #4078C0;
-            border-color: #4078C0;
-        }
-        .btn-success {
-            background-color: #8CB1E6;
-            border-color: #8CB1E6;
-        }
-        .btn-success:hover {
-            background-color: #5B9BD5;
-            border-color: #5B9BD5;
-        }
-        .project-img {
-            max-width: 100%;
-            height: auto;
-        }
-        .footer {
-            padding: 20px 0;
-            text-align: center;
-        }
-        .contact-btns .btn {
-            margin: 0 10px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carlos Cardona — Data Engineer</title>
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        .timeline {
-        position: relative;
-        padding: 1em 0;
-        margin-top: 2em;
-        }
+  <style>
+    :root {
+      --bg:        #0D0F14;
+      --bg2:       #131620;
+      --surface:   #1A1E2A;
+      --border:    #252B3B;
+      --accent:    #4F8EF7;
+      --accent2:   #7AB3FF;
+      --text:      #E8ECF4;
+      --muted:     #7A8299;
+      --tag-bg:    #1E2535;
+      --tag-text:  #7AB3FF;
+    }
 
-        .timeline-item {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 2em;
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .timeline-icon {
-            background-color: #305A91;
-            color: #fff;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            height: 50px;
-            width: 50px;
-            margin-right: 1em;
-        }
+    html { scroll-behavior: smooth; }
 
-        .timeline-content {
-            flex: 1;
-        }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-        .timeline-content h3 {
-            margin-top: 0;
-        }
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
 
-        .jumbotron .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(13,15,20,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
 
-        @media (max-width: 576px) {
-        
-            .avatar {
-                max-width: 30%; /* Ajusta el tamaño de la imagen si es necesario */
-                margin: 15 auto; /* Centra la imagen */
-            }
-            h1.display-4 {
-                font-size: 2.5rem; /* Ajusta el tamaño del texto para pantallas pequeñas */
-                line-height: 1.2; /* Ajusta la altura de la línea para evitar cortes */
-            }
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
 
-            .jumbotron {
-                padding-top: 2rem;
-                padding-bottom: 2rem;
-            }
-        }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+    .nav-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
 
-        .cert-card {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .cert-icon {
-            font-size: 40px;
-            color: #4078C0;
-        }
+    .lang-toggle {
+      display: flex;
+      gap: 0.4rem;
+      margin-left: 1.5rem;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .lang-btn:hover, .lang-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
-        .language-switcher {
-            position: right;
-            top: 10px;
-            right: 10px;
-            padding-left: 10px;
-        }
-    </style>
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 2.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.25;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%);
+      top: 10%; left: -10%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.25s forwards;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent2);
+    }
+
+    .hero-title {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.4s forwards;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.55s forwards;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 3px;
+      border: 1px solid rgba(79,142,247,0.2);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.7s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 2.5rem;
+      position: relative;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 0.97rem;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-photo {
+      text-align: center;
+    }
+
+    .about-photo img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      filter: grayscale(20%);
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── STACK ── */
+    #stack { background: var(--bg); }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .stack-item {
+      background: var(--surface);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .stack-item:hover { background: var(--bg2); }
+
+    .stack-icon {
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+
+    .stack-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+
+    .stack-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg2); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+
+    .tl-item:last-child { padding-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -2rem;
+      top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      transform: translateX(-4px);
+      box-shadow: 0 0 10px rgba(79,142,247,0.5);
+    }
+
+    .tl-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .tl-company {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .tl-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .tl-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .tl-bullets li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .tl-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    .tl-bullets li strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .tl-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    /* ── RESUME ── */
+    #resume { background: var(--bg); }
+
+    .resume-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .resume-block p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 2.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.2rem; }
+      .hero { padding: 5rem 1.2rem 3rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { order: -1; }
+      .resume-block { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <a class="navbar-brand" href="#">
-            <img src="img/logo.png" alt="Logo" style="height: 45px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Home Barra de navegacion español e inglés-->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#about" data-lang="es">Sobre mí</a>
-                    <a class="nav-link" href="#about" data-lang="en">About Me</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#projects" data-lang="es">Proyectos</a>
-                    <a class="nav-link" href="#projects" data-lang="en">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#resume" data-lang="es">Currículum</a>
-                    <a class="nav-link" href="#resume" data-lang="en">Resume</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact" data-lang="es">Contacto</a>
-                    <a class="nav-link" href="#contact" data-lang="en">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <div class="language-switcher">
-            <button class="btn btn-primary" onclick="setLanguage('es')">Español</button>
-            <button class="btn btn-primary" onclick="setLanguage('en')">English</button>
-        </div>
-    </nav>
-
-    <!-- Home -->
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6 text-center text-md-left">
-                    <h1 class="display-4 mb-3 mb-md-0" data-lang="es">Carlos Cardona</h1>
-                    <p class="lead" data-lang="es">Analista de Datos | Desarrollador</p>
-                    <a class="btn btn-primary btn-lg" href="#about" role="button" data-lang="es">Conoce más sobre mí</a>
-                    <h1 class="display-4 d-none" data-lang="en">Carlos Cardona</h1>
-                    <p class="lead d-none" data-lang="en">Data Analyst | Developer</p>
-                    <a class="btn btn-primary btn-lg d-none" href="#about" role="button" data-lang="en">Learn more about me</a>
-                </div>
-                <div class="col-12 col-md-4 text-center">
-                    <img src="img/avatar.png" alt="Mi avatar" class="avatar img-fluid">
-                </div>
-            </div>
-        </div>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">CC / DE</a>
+    <ul class="nav-links">
+      <li><a href="#about"      data-key="nav_about">About</a></li>
+      <li><a href="#stack"      data-key="nav_stack">Stack</a></li>
+      <li><a href="#experience" data-key="nav_exp">Experience</a></li>
+      <li><a href="#resume"     data-key="nav_resume">Resume</a></li>
+      <li><a href="#contact"    data-key="nav_contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        onclick="setLang('es')">ES</button>
     </div>
-    
-    
-    <!-- About -->
-    <section id="about" class="container mt-5">
-        <div class="row">
-            <div class="col-md-4 col-12 mb-3 text-center">
-                <img src="img/profile.jpg" class="img-fluid rounded-circle" alt="Carlos Cardona">
-            </div>
-            <div class="col-md-8 col-12">
-                <h3 class="text-center" style="color: #4078C0; align-items: right;" data-lang="es">Acerca de mí</h3>
-                <p style="text-align: justify;" data-lang="es">¡Hola! Soy Carlos Cardona, un apasionado analista de datos con experiencia en programación y liderazgo de proyectos. He trabajado con tecnologías como SQL, Python, Tableau, Power BI, JavaScript y Laravel. Adicionalmente cuento con una certificación en análisis de datos de Google.</p>
-                <p style="text-align: justify;" data-lang="es">Mi objetivo es transformar los datos en información valiosa que pueda usarse para tomar decisiones estratégicas.</p>
-                <h3 class="text-center" style="color: #4078C0; align-items: right;" data-lang="en">About me</h3>
-                <p style="text-align: justify;" data-lang="en">Hello! I am Carlos Cardona, a passionate data analyst with experience in programming and project leadership. I have worked with technologies such as SQL, Python, Tableau, Power BI, JavaScript and Laravel. Additionally, I have a certification in data analysis from Google.</p>
-                <p style="text-align: justify;" data-lang="en">My goal is to transform data into valuable information that can be used to make strategic decisions.</p>
-                
-                <div class="text-center">
-                    <h3 style="color: #4078C0;" data-lang="es">Tecnologías que conozco 👨🏻‍💻</h3>
-                    <h3 style="color: #4078C0;" data-lang="en">Technologies I know 👨🏻‍💻</h3>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h4 data-lang="es">Lenguajes de Programación</h4>
-                            <h4 data-lang="en">Programming Lenguages</h4>
-                            <a href="https://www.python.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/python-original.svg" alt="Python" height="75"></a>
-                            <a href="https://www.r-project.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/r.svg" alt="R" height="75"></a>
-                        </div>
-                        <div class="col-sm-4">
-                            <h4 data-lang="es">Bases de Datos</h4>
-                            <h4 data-lang="en">DataBases</h4>
-                            <a href="https://www.mysql.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg" alt="MySQL" height="75"></a>
-                            <a href="https://www.postgresql.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/postgresql-original-wordmark.svg" alt="PostgreSQL" height="75"></a>
-                        </div>
-                        <div class="col-sm-4">
-                            <h4 data-lang="es">Herramientas de Visualización</h4>
-                            <h4 data-lang="en">Visualization tools</h4>
-                            <a href="https://www.tableau.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/tableau.svg" alt="Tableau" height="75"></a>
-                            <a href="https://powerbi.microsoft.com/en-us/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/powerbi.png" alt="Power BI" height="75"></a>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-sm-12">
-                            <h4 data-lang="es">Otras Herramientas</h4>
-                            <h4 data-lang="en">Other Tools</h4>
-                            <a href="https://getbootstrap.com/docs/3.4/javascript/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/bootstrap-plain.svg" alt="Bootstrap" height="50"></a>
-                            <a href="https://en.wikipedia.org/wiki/HTML5" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" height="50"></a>
-                            <a href="https://github.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/git-scm-icon.svg" alt="Git" height="50"></a>
-                            <a href="https://www.w3schools.com/css/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50"></a>
-                            <a href="https://about.gitlab.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/gitlab.svg" alt="GitLab" height="50"></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Aqui estaba la parte de certificaciones -->
-            </div>
-        </div>
-    </section>
-    
-    <section class="container mt-5"> 
-        <!-- Experiencia Laboral -->
-        <h2 data-lang="es">Experiencia</h2>
-        <h2 data-lang="en">Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <div class="timeline-content" data-lang="es">
-                    <h3>Analista de Comercio Exterior</h3>
-                    <p>Entrada Group de México <br> (1 de Enero 2021 - 1 de Marzo de 2024)</p>
-                    <h6>Principales logros:</h6>
-                    <ul>
-                        <li>Presentación de resultados al equipo directivo usando Power BI</li>
-                        <li>Ahorro de más de $50,000 en impuestos para clientes gracias al análisis previo de exportaciones y creación de estrategias junto con el departamento de liderazgo</li>
-                        <li>Extracción, limpieza, transformación y análisis de datos de comercio exterior usando Excel, SQL y Python</li>
-                        <li>Ahorro de 60% en tiempo del procesamiento de datos mediante el uso de macros en excel y Power Automate</li>
-                    </ul>
-                </div>
-                <div class="timeline-content" data-lang="en">
-                    <h3>Foreign Trade Analyst</h3>
-                    <p>Entrada Group de México <br> (January 1, 2021 - March 1, 2024)</p>
-                    <h6>Main achievements:</h6>
-                    <ul>
-                        <li>Presenting results to the management team using Power Bi</li>
-                        <li>Extraction, cleansing, transformation and analysis of foreign trade data using excel, SQL and Python</li>
-                        <li>Savings over 50,000 $ in taxes for clients thanks to export pre-analysis and strategy creation together with the leadership department</li>
-                        <li>60% savings in data processing time by using macros in excel and Power Automate</li>
-                    </ul>
-                </div>
+  </nav>
 
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <div class="timeline-content" data-lang="es">
-                    <h3>Líder de Proyectos de Software</h3>
-                    <p>Concretos Lanzados Los Mochis <br> (Febrero 2020 - Septiembre 2020)</p>
-                    <h6>Principales logros:</h6>
-                    <ul>
-                        <li>Dirigí el desarrollo de un Sistema de Gestión de Recursos Humanos (HRMS).</li>
-                        <li>Utilicé JavaScript con Laravel, Git para el control de versiones y SQL para la gestión de bases de datos.</li>
-                        <li>Mantuve una comunicación clara con el departamento de gestión.</li>
-                        <li>Capacitación y Soporte: Brindé capacitación y soporte a los usuarios finales para una adopción fluida del HRMS.</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline-content" data-lang="en">
-                    <h3>Software Project Leader</h3>
-                    <p>Concretos Lanzados Los Mochis <br> (February 2020 - September 2020)</p>
-                    <h6>Main achievements:</h6>
-                    <ul>
-                        <li>Led the development of a HumanResource Management System (HRMS).</li>
-                        <li>Utilized JavaScript with Laravel, Git for version control, and SQL for database management.</li>
-                        <li>Maintained clear communication with the management department.</li>
-                        <li>Provided training and support to end-users for smooth HRMS adoption.</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Añadir más experiencias según sea necesario -->
-        </div>
-        <!-- Proyectos -->
-        <h2 id="projects" data-lang="es">Proyectos</h2>
-        <h2 id="projects" data-lang="en">Projects</h2>
-        <div class="row">
-            <!-- Proyecto 1 -->
-            <div class="col-md-4 col-12 mb-3">
-                <div class="card mb-4">
-                    <img src="img/proyecto1.png" class="card-img-top project-img" alt="Proyecto 1" height="50px" >
-                    <div class="card-body">
-                        <h5 class="card-title" data-lang="es">Análisis de datos---Empresa-consultora</h5>
-                        <h5 class="card-title" data-lang="en">Data-Analysis---Consulting-Company</h5>
-                        <p class="card-text" data-lang="es">Herramientas y scripts para analizar datos de empleados, identificando disparidades salariales y sesgos de crecimiento entre departamentos para una empresa de consultoría.</p>
-                        <p class="card-text" data-lang="en">Tools and scripts to analyze employee data, identifying salary disparities and growth biases across departments for a consulting firm.</p>
-                        <h6 data-lang="es">Habilidades aplicadas:</h6>
-                        <h6 data-lang="en">Applied Skills:</h6>
-                        <ul data-lang="es">
-                            <li>Limpieza de datos usando SQL</li>
-                            <li>Análisis de datos exploratorios (EDA) usando SQL</li>
-                            <li>Visualización de datos (Tableau)</li>
-                            <li>Desarrollo de herramientas y scripts para análisis de datos. (Python)</li>
-                            <li>Detección de disparidades salariales (Tableau)</li>
-                            <li>Identificación de sesgos de crecimiento entre departamentos (Tableau)</li>
-                        </ul>
-                        <ul data-lang="en">
-                            <li>Data cleaning using SQL</li>
-                            <li>Exploratory Data Analysis (EDA) using SQL</li>
-                            <li>Data visualization (Tableau)</li>
-                            <li>Development of tools and scripts for data analysis (Python)</li>
-                            <li>Detection of salary disparities (Tableau)</li>
-                            <li>Identification of growth biases across departments (Tableau)</li>
-                        </ul>
-                        <a href="https://github.com/Qarant/Data-Analysis---Consulting-Company" target="_blank" class="btn btn-primary" data-lang="es">Ver más</a>
-                        <a href="https://github.com/Qarant/Data-Analysis---Consulting-Company" target="_blank" class="btn btn-primary" data-lang="en">See more</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Proyecto 2 -->
-            <div class="col-md-4 col-12 mb-3">
-                <div class="card mb-4">
-                    <img src="img/alpes.png" class="card-img-top project-img" alt="Proyecto 2">
-                    <div class="card-body" data-lang="en">
-                        <h5 class="card-title" data-lang="en">Exploratory Analysis and Visualization of a Numerical Weather Prediction Model in the Alps</h5>
-                        <p class="card-text">This project uses Python to perform an exploratory analysis of a dataset representing a numerical weather prediction model in a mountainous region of the Alps. Through data analysis and the creation of visualizations, weather trends in this region are identified and observed. </p>
-                        <h6 data-lang="en">Applied Skills:</h6>
-                        <ul data-lang="en">
-                            <li>Análisis de datos exploratorios (EDA) using Python (Pandas library)</li>
-                            <li>Data Visualization using Python</li>
-                        </ul>
-                        <a href="https://github.com/Qarant/Alpes_dataSet_Viz" class="btn btn-primary" target="_blank">See more</a>
-                    </div>
-                    <div class="card-body" data-lang="es">
-                        <h5 class="card-title">Análisis exploratorio y visualización de un modelo numérico de predicción meteorológica en los Alpes</h5>
-                        <p class="card-text">Este proyecto utiliza Python para realizar un análisis exploratorio de un conjunto de datos que representa un modelo numérico de predicción del tiempo en una región montañosa de los Alpes. A través del análisis de datos y la creación de visualizaciones, se identifican y observan las tendencias climáticas en esta región. </p>
-                        <h6>Habilidades aplicadas:</h6>
-                        <ul>
-                            <li>Análisis de datos exploratorios (EDA) mediante Python (Libreria Pandas)</li>
-                            <li>Visualización de datos mediante Python</li>
-                        </ul>
-                        <a href="https://github.com/Qarant/Alpes_dataSet_Viz" target="_blank" class="btn btn-primary">Ver más</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Proyecto 3 -->
-            <div class="col-md-4 col-12 mb-3">
-                <div class="card mb-4">
-                    <img src="img/mexico.jpg" class="card-img-top project-img" alt="Proyecto 3">
-                    <div class="card-body" data-lang="en">
-                        <h5 class="card-title" data-lang="en">Analysis of Mexican Salaries Over Time</h5>
-                        <p class="card-text">This project focuses on analyzing Mexican salaries over time using data obtained from the official INEGI website. It involves data cleaning processes and the application of statistical methods and predictive models to explore salary trends across different states of Mexico, segmented by gender. </p>
-                        <h6 data-lang="en">Applied Skills:</h6>
-                        <ul data-lang="en">
-                            <li>Data Extraction: Obtaining data from INEGI</li>
-                            <li>Data Cleaning: Handling missing data and correcting errors.</li>
-                            <li>Statistic analysis: Calculation of descriptive statistics (mean, median, standard deviation) and Analysis of salary distribution.</li> 
-                            <li>Data visualization: Using the seaborn and matplotlib libraries to generate meaningful insights</li>
-                        </ul>
-                        <a href="https://github.com/Qarant/Analysis-of-Mexican-Salaries-Over-Time" class="btn btn-primary" target="_blank">See more</a>
-                    </div>
-                    <div class="card-body" data-lang="es">
-                        <h5 class="card-title">Análisis de los salarios mexicanos a lo largo del tiempo</h5>
-                        <p class="card-text">Este proyecto se enfoca en analizar los salarios mexicanos a lo largo del tiempo utilizando datos obtenidos del sitio web oficial del INEGI. Implica procesos de limpieza de datos y la aplicación de métodos estadísticos y modelos predictivos para explorar tendencias salariales en diferentes estados de México, segmentadas por género. </p>
-                        <h6>Habilidades aplicadas:</h6>
-                        <ul>
-                            <li>Extracción de datos: Obtención de datos del INEGI</li>
-                            <li>Limpieza de datos: manejo de datos faltantes y corrección de errores.</li>
-                            <li>Análisis estadístico: Cálculo de estadísticas descriptivas (media, mediana, desviación estándar) y Análisis de distribución salarial.</li>
-                            <li>Visualización de datos: Uso de las librerias seaborn y matplotlib para generar insights signficativos</li>
-                        </ul>
-                        <a href="https://github.com/Qarant/Analysis-of-Mexican-Salaries-Over-Time" target="_blank" class="btn btn-primary">Ver más</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Añadir más proyectos según sea necesario -->
-        </div>
-        <!-- Resume -->
-        <h2 id="resume" data-lang="es">Currículum</h2>
-        <h2 id="resume" data-lang="en">Resume</h2>
-        <a href="docs/Analista_Datos_CV_Carlos Antonio Cardona.pdf" target="_blank" download="Data_Analyst_CV_Carlos_Antonio_Cardona.pdf" class="btn btn-secondary mb-4" data-lang="es">Descargar CV</a>
-        <a href="docs/Data_Analyst_CV_Carlos Antonio Cardona.pdf" target="_blank" download="Data_Analyst_CV_Carlos_Antonio_Cardona.pdf" class="btn btn-secondary mb-4" data-lang="en">Download resume</a>
-        <!-- Educacion -->
-        <h3 data-lang="es">Educación</h3>
-        <h3 data-lang="en">Education</h3>
-        <ul data-lang="es">
-            <li><strong>Ingenieria en Sistemas Computacionales:</strong> (Titulado) - Instituto Tecnológico Superior de Fresnillo</li>
-            <!-- Añadir más detalles de educación -->
-        </ul>
-        <ul data-lang="en">
-            <li><strong>Computer Systems Engineer:</strong> (Graduated) - Instituto Tecnológico Superior de Fresnillo</li>
-            <!-- Añadir más detalles de educación -->
-        </ul>
-    </section>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <p class="hero-label" data-key="hero_label">Senior Data Engineer · Monterrey, MX · Open to Remote</p>
+      <h1 class="hero-name">Carlos <em>Cardona</em></h1>
+      <p class="hero-title" data-key="hero_subtitle">Building data pipelines and cloud architectures<br>that move business decisions forward.</p>
+      <div class="hero-tags">
+        <span class="tag">BigQuery</span>
+        <span class="tag">Apache Airflow</span>
+        <span class="tag">GCP</span>
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">n8n</span>
+        <span class="tag">ETL / ELT</span>
+        <span class="tag">Medallion Architecture</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#experience" class="btn btn-primary" data-key="hero_cta1">View Experience</a>
+        <a href="#contact"    class="btn btn-outline"  data-key="hero_cta2">Get in Touch</a>
+      </div>
+    </div>
+  </div>
 
-    <!-- Certificaciones -->
-    <section>
-        <div class="container">
-            <h3 class="mt-4 text-center" style="color: #4078C0;" data-lang="es">Certificaciones</h3>
-            <h3 class="mt-4 text-center" style="color: #4078C0;" data-lang="en">Certifications</h3>
-            <div class="row justify-content-center">
-                <div class="col-md-6" data-lang="en">
-                    <div class="cert-card text-center">
-                        <i class="fas fa-certificate cert-icon"></i>
-                        <h4 class="mt-2"><a href="https://www.coursera.org/account/accomplishments/professional-cert/SPE6CPN932TJ" target="_blank">Google Data Analytics Certification</a></h4>
-                        <p>Google Data Analytics Certification</p>
-                    </div>
-                </div>
-                <div class="col-md-6" data-lang="es">
-                    <div class="cert-card text-center">
-                        <i class="fas fa-certificate cert-icon"></i>
-                        <h4 class="mt-2"><a href="https://www.coursera.org/account/accomplishments/professional-cert/SPE6CPN932TJ" target="_blank">Certificación de análisis de datos de Google</a></h4>
-                        <p>Certificación de análisis de datos de Google</p>
-                    </div>
-                </div>
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label" data-key="about_label">01 — About</p>
+      <h2 class="section-title" data-key="about_title">Who I am</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p data-key="about_p1">
+            <strong data-key="about_p1_strong">Data Engineer at Uber Freight</strong>
+            <span data-key="about_p1_rest">, based in Monterrey. I design and maintain ETL pipelines, manage data orchestration with Apache Airflow, and build data layer architectures on Google Cloud Platform.</span>
+          </p>
+          <p data-key="about_p2">I collaborate daily in English with cross-functional teams in the United States, translating business requirements into reliable, scalable data solutions.</p>
+          <p data-key="about_p3">Currently leading the design of a Silver and Gold layer in a medallion architecture on BigQuery — consolidating 55 Bronze tables into a streamlined, business-aligned model.</p>
+          <div class="stat-row">
+            <div class="stat">
+              <span class="stat-num">$100K+</span>
+              <span class="stat-label" data-key="stat1">annual savings delivered</span>
             </div>
+            <div class="stat">
+              <span class="stat-num">55</span>
+              <span class="stat-label" data-key="stat2">tables consolidated</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">1.5+</span>
+              <span class="stat-label" data-key="stat3">years in Data Engineering</span>
+            </div>
+          </div>
         </div>
-    </section>
+        <div class="about-photo">
+          <img src="img/profile.jpg" alt="Carlos Cardona">
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact" class="container mt-5" data-lang="es">
-        <h2>Contacto</h2>
-        <div class="contact-btns text-center">
-            <a href="https://www.linkedin.com/in/c-cardona-c/" class="btn btn-primary btn-lg" target="_blank">LinkedIn</a>
-            <a href="https://github.com/Qarant" class="btn btn-secondary btn-lg" target="_blank">GitHub</a>
-            <a href="mailto:carlos22ant@gmail.com" class="btn btn-success btn-lg">Correo Electrónico</a>
-        </div>
-    </section>
-    <section id="contact" class="container mt-5" data-lang="en">
-        <h2>Contact me</h2>
-        <div class="contact-btns text-center">
-            <a href="https://www.linkedin.com/in/c-cardona-c/" class="btn btn-primary btn-lg" target="_blank">LinkedIn</a>
-            <a href="https://github.com/Qarant" class="btn btn-secondary btn-lg" target="_blank">GitHub</a>
-            <a href="mailto:carlos22ant@gmail.com" class="btn btn-success btn-lg">Email</a>
-        </div>
-    </section>
+  <div class="divider"></div>
 
-    <!-- Footer -->
-    <footer class="footer mt-5" data-lang="es">
-        <div class="container">
-            <p>&copy; 2024 Carlos Cardona. Todos los derechos reservados.</p>
+  <!-- STACK -->
+  <section id="stack">
+    <div class="section-inner">
+      <p class="section-label" data-key="stack_label">02 — Stack</p>
+      <h2 class="section-title" data-key="stack_title">Tools I work with</h2>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <div class="stack-icon"><i class="fab fa-google"></i></div>
+          <div class="stack-name">Google BigQuery</div>
+          <div class="stack-desc" data-key="s1">Cloud data warehouse — daily use</div>
         </div>
-    </footer>
-    <footer class="footer mt-5" data-lang="en">
-        <div class="container">
-            <p>&copy; 2024 Carlos Cardona. All rights reserved.</p>
+        <div class="stack-item">
+          <div class="stack-icon"><i class="fas fa-wind"></i></div>
+          <div class="stack-name">Apache Airflow</div>
+          <div class="stack-desc" data-key="s2">Pipeline orchestration — daily use</div>
         </div>
-    </footer>
-    <!-- Funcionalidad de cambio de idioma -->
-    <script>
-        function setLanguage(lang) {
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                if (el.getAttribute('data-lang') === lang) {
-                    el.classList.remove('d-none');
-                } else {
-                    el.classList.add('d-none');
-                }
-            });
+        <div class="stack-item">
+          <div class="stack-icon"><i class="fab fa-python"></i></div>
+          <div class="stack-name">Python</div>
+          <div class="stack-desc" data-key="s3">Automation & scripting</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-icon"><i class="fas fa-database"></i></div>
+          <div class="stack-name">SQL</div>
+          <div class="stack-desc" data-key="s4">Transformations & data modeling</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-icon"><i class="fas fa-cloud"></i></div>
+          <div class="stack-name">GCP</div>
+          <div class="stack-desc" data-key="s5">Cloud Storage, IAM, GCS</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-icon"><i class="fas fa-project-diagram"></i></div>
+          <div class="stack-name">n8n</div>
+          <div class="stack-desc" data-key="s6">Workflow automation</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="stack-name">Medallion Architecture</div>
+          <div class="stack-desc" data-key="s7">Bronze / Silver / Gold layers</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-icon"><i class="fas fa-chart-bar"></i></div>
+          <div class="stack-name">Tableau · Power BI</div>
+          <div class="stack-desc" data-key="s8">Data visualization</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-label" data-key="exp_label">03 — Experience</p>
+      <h2 class="section-title" data-key="exp_title">Work history</h2>
+      <div class="timeline">
+
+        <!-- Uber Freight -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-role" data-key="j1_role">Senior Data Engineer</span>
+            <span class="tl-company">Uber Freight</span>
+          </div>
+          <div class="tl-date" data-key="j1_date">Nov 2024 – Present · Monterrey, NL (Hybrid)</div>
+          <ul class="tl-bullets">
+            <li data-key="j1_b1">Engineered Python automation pipelines replacing manual workflows — <strong>$100K+ in annualized cost savings.</strong></li>
+            <li data-key="j1_b2">Leading design of Silver and Gold layers in a medallion architecture, consolidating <strong>55 Bronze tables</strong> into ≤10 Gold tables aligned to business needs.</li>
+            <li data-key="j1_b3">Manage and maintain Apache Airflow DAGs supporting daily ETL operations across logistics data domains.</li>
+            <li data-key="j1_b4">Daily collaboration in English with stakeholders across the United States.</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag">BigQuery</span><span class="tag">Airflow</span><span class="tag">Python</span>
+            <span class="tag">SQL</span><span class="tag">GCP</span><span class="tag">n8n</span><span class="tag">YAML</span>
+          </div>
+        </div>
+
+        <!-- Freelance -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-role" data-key="j2_role">Freelance Data Analyst</span>
+          </div>
+          <div class="tl-date" data-key="j2_date">Mar 2024 – Nov 2024</div>
+          <ul class="tl-bullets">
+            <li data-key="j2_b1">Self-directed learning and personal projects deepening skills in data engineering, Python, and SQL.</li>
+            <li data-key="j2_b2">Built exploratory data analysis projects in Python (Pandas, Matplotlib, Seaborn).</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Pandas</span><span class="tag">EDA</span>
+          </div>
+        </div>
+
+        <!-- Entrada Group -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-role" data-key="j3_role">Data Analyst</span>
+            <span class="tl-company">Entrada Group de México</span>
+          </div>
+          <div class="tl-date" data-key="j3_date">Jan 2021 – Feb 2024 · Fresnillo, Zac</div>
+          <ul class="tl-bullets">
+            <li data-key="j3_b1">Identified tax-saving opportunities worth <strong>$50K+</strong> through export data analysis and trade treaty modeling.</li>
+            <li data-key="j3_b2">Reduced data processing time by <strong>60%</strong> with Excel macro automation and Power Automate workflows.</li>
+            <li data-key="j3_b3">Extracted, cleaned, transformed, and analyzed foreign trade datasets using Excel, SQL, and Python.</li>
+            <li data-key="j3_b4">Delivered executive reporting through Power BI dashboards presented to senior leadership.</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Power BI</span>
+            <span class="tag">Excel</span><span class="tag">Power Automate</span>
+          </div>
+        </div>
+
+        <!-- Concretos -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-role" data-key="j4_role">Software Project Lead</span>
+            <span class="tl-company">Concretos Lanzados Los Mochis</span>
+          </div>
+          <div class="tl-date" data-key="j4_date">Feb 2020 – Sep 2020 · Fresnillo, Zac</div>
+          <ul class="tl-bullets">
+            <li data-key="j4_b1">Led development of an internal HRMS using JavaScript, Laravel, Git, and SQL.</li>
+            <li data-key="j4_b2">Managed communication between technical team and company management; trained end users for adoption.</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag">JavaScript</span><span class="tag">Laravel</span><span class="tag">SQL</span><span class="tag">Git</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="section-inner">
+      <p class="section-label" data-key="resume_label">04 — Resume</p>
+      <h2 class="section-title" data-key="resume_title">Education & Certifications</h2>
+
+      <div class="timeline" style="margin-bottom:2.5rem;">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-role" data-key="edu_degree">B.S. Computer Systems Engineering</span>
+          </div>
+          <div class="tl-date">Instituto Tecnológico Superior de Fresnillo</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-role">Google Data Analytics Professional Certificate</span>
+          </div>
+          <div class="tl-date">Google / Coursera ·
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/SPE6CPN932TJ"
+               target="_blank" style="color:var(--accent); text-decoration:none;" data-key="cert_link">View credential →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-block">
+        <div>
+          <p style="color:var(--text); font-weight:500; margin-bottom:0.4rem;" data-key="dl_title">Download full resume</p>
+          <p data-key="dl_sub">PDF · Updated 2025</p>
+        </div>
+        <a href="docs/Data_Engineer_CV_Carlos_Cardona.pdf" download class="btn btn-primary">
+          <i class="fas fa-download"></i>
+          <span data-key="dl_btn">Download CV</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label" data-key="contact_label">05 — Contact</p>
+      <h2 class="section-title" data-key="contact_title">Let's connect</h2>
+      <p style="color:var(--muted); max-width:500px; margin-bottom:2rem;" data-key="contact_sub">
+        Open to remote Data Engineer opportunities. Feel free to reach out via email or LinkedIn.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:carlos22ant@gmail.com" class="btn btn-primary">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+        <a href="https://www.linkedin.com/in/c-cardona-c" target="_blank" class="btn btn-outline">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/Qarant" target="_blank" class="btn btn-outline">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Carlos Cardona · <span data-key="footer_text">Built with intention.</span></p>
+  </footer>
+
+  <!-- ── I18N ── -->
+  <script>
+    const i18n = {
+      en: {
+        nav_about:   "About",
+        nav_stack:   "Stack",
+        nav_exp:     "Experience",
+        nav_resume:  "Resume",
+        nav_contact: "Contact",
+        hero_label:  "Senior Data Engineer · Monterrey, MX · Open to Remote",
+        hero_subtitle: "Building data pipelines and cloud architectures<br>that move business decisions forward.",
+        hero_cta1:   "View Experience",
+        hero_cta2:   "Get in Touch",
+        about_label: "01 — About",
+        about_title: "Who I am",
+        about_p1_strong: "Data Engineer at Uber Freight",
+        about_p1_rest:   ", based in Monterrey. I design and maintain ETL pipelines, manage data orchestration with Apache Airflow, and build data layer architectures on Google Cloud Platform.",
+        about_p2:    "I collaborate daily in English with cross-functional teams in the United States, translating business requirements into reliable, scalable data solutions.",
+        about_p3:    "Currently leading the design of a Silver and Gold layer in a medallion architecture on BigQuery — consolidating 55 Bronze tables into a streamlined, business-aligned model.",
+        stat1:       "annual savings delivered",
+        stat2:       "tables consolidated",
+        stat3:       "years in Data Engineering",
+        stack_label: "02 — Stack",
+        stack_title: "Tools I work with",
+        s1: "Cloud data warehouse — daily use",
+        s2: "Pipeline orchestration — daily use",
+        s3: "Automation & scripting",
+        s4: "Transformations & data modeling",
+        s5: "Cloud Storage, IAM, GCS",
+        s6: "Workflow automation",
+        s7: "Bronze / Silver / Gold layers",
+        s8: "Data visualization",
+        exp_label:   "03 — Experience",
+        exp_title:   "Work history",
+        j1_role:     "Senior Data Engineer",
+        j1_date:     "Nov 2024 – Present · Monterrey, NL (Hybrid)",
+        j1_b1:       "Engineered Python automation pipelines replacing manual workflows — <strong>$100K+ in annualized cost savings.</strong>",
+        j1_b2:       "Leading design of Silver and Gold layers in a medallion architecture, consolidating <strong>55 Bronze tables</strong> into ≤10 Gold tables aligned to business needs.",
+        j1_b3:       "Manage and maintain Apache Airflow DAGs supporting daily ETL operations across logistics data domains.",
+        j1_b4:       "Daily collaboration in English with stakeholders across the United States.",
+        j2_role:     "Freelance Data Analyst",
+        j2_date:     "Mar 2024 – Nov 2024",
+        j2_b1:       "Self-directed learning and personal projects deepening skills in data engineering, Python, and SQL.",
+        j2_b2:       "Built exploratory data analysis projects in Python (Pandas, Matplotlib, Seaborn).",
+        j3_role:     "Data Analyst",
+        j3_date:     "Jan 2021 – Feb 2024 · Fresnillo, Zac",
+        j3_b1:       "Identified tax-saving opportunities worth <strong>$50K+</strong> through export data analysis and trade treaty modeling.",
+        j3_b2:       "Reduced data processing time by <strong>60%</strong> with Excel macro automation and Power Automate workflows.",
+        j3_b3:       "Extracted, cleaned, transformed, and analyzed foreign trade datasets using Excel, SQL, and Python.",
+        j3_b4:       "Delivered executive reporting through Power BI dashboards presented to senior leadership.",
+        j4_role:     "Software Project Lead",
+        j4_date:     "Feb 2020 – Sep 2020 · Fresnillo, Zac",
+        j4_b1:       "Led development of an internal HRMS using JavaScript, Laravel, Git, and SQL.",
+        j4_b2:       "Managed communication between technical team and company management; trained end users for adoption.",
+        resume_label: "04 — Resume",
+        resume_title: "Education & Certifications",
+        edu_degree:  "B.S. Computer Systems Engineering",
+        cert_link:   "View credential →",
+        dl_title:    "Download full resume",
+        dl_sub:      "PDF · Updated 2025",
+        dl_btn:      "Download CV",
+        contact_label: "05 — Contact",
+        contact_title: "Let's connect",
+        contact_sub:   "Open to remote Data Engineer opportunities. Feel free to reach out via email or LinkedIn.",
+        footer_text: "Built with intention.",
+      },
+      es: {
+        nav_about:   "Sobre mí",
+        nav_stack:   "Stack",
+        nav_exp:     "Experiencia",
+        nav_resume:  "Currículum",
+        nav_contact: "Contacto",
+        hero_label:  "Senior Data Engineer · Monterrey, MX · Disponible para remoto",
+        hero_subtitle: "Construyendo pipelines de datos y arquitecturas cloud<br>que impulsan decisiones de negocio.",
+        hero_cta1:   "Ver experiencia",
+        hero_cta2:   "Contactar",
+        about_label: "01 — Sobre mí",
+        about_title: "Quién soy",
+        about_p1_strong: "Data Engineer en Uber Freight",
+        about_p1_rest:   ", basado en Monterrey. Diseño y mantengo pipelines ETL, gestiono orquestación de datos con Apache Airflow y construyo arquitecturas de capas de datos en Google Cloud Platform.",
+        about_p2:    "Colaboro diariamente en inglés con equipos multifuncionales en Estados Unidos, traduciendo requerimientos de negocio en soluciones de datos confiables y escalables.",
+        about_p3:    "Actualmente liderando el diseño de capas Silver y Gold en una arquitectura medallion en BigQuery — consolidando 55 tablas Bronze en un modelo alineado al negocio.",
+        stat1:       "ahorro anual generado",
+        stat2:       "tablas consolidadas",
+        stat3:       "años en Data Engineering",
+        stack_label: "02 — Stack",
+        stack_title: "Herramientas con las que trabajo",
+        s1: "Data warehouse en la nube — uso diario",
+        s2: "Orquestación de pipelines — uso diario",
+        s3: "Automatización y scripting",
+        s4: "Transformaciones y modelado de datos",
+        s5: "Cloud Storage, IAM, GCS",
+        s6: "Automatización de flujos de trabajo",
+        s7: "Capas Bronze / Silver / Gold",
+        s8: "Visualización de datos",
+        exp_label:   "03 — Experiencia",
+        exp_title:   "Historial laboral",
+        j1_role:     "Senior Data Engineer",
+        j1_date:     "Nov 2024 – Presente · Monterrey, NL (Híbrido)",
+        j1_b1:       "Desarrollé pipelines de automatización en Python reemplazando procesos manuales — <strong>más de $100K en ahorros anuales.</strong>",
+        j1_b2:       "Liderando el diseño de capas Silver y Gold en una arquitectura medallion, consolidando <strong>55 tablas Bronze</strong> en ≤10 tablas Gold alineadas al negocio.",
+        j1_b3:       "Gestiono y mantengo DAGs en Apache Airflow para operaciones ETL diarias en dominios de datos logísticos.",
+        j1_b4:       "Colaboración diaria en inglés con stakeholders en Estados Unidos.",
+        j2_role:     "Analista de Datos Freelance",
+        j2_date:     "Mar 2024 – Nov 2024",
+        j2_b1:       "Aprendizaje autodidacta y proyectos personales para profundizar habilidades en data engineering, Python y SQL.",
+        j2_b2:       "Desarrollo de proyectos de análisis exploratorio de datos en Python (Pandas, Matplotlib, Seaborn).",
+        j3_role:     "Analista de Datos",
+        j3_date:     "Ene 2021 – Feb 2024 · Fresnillo, Zac",
+        j3_b1:       "Identifiqué oportunidades de ahorro fiscal por más de <strong>$50K</strong> mediante análisis de exportaciones y modelado de tratados de libre comercio.",
+        j3_b2:       "Reduje el tiempo de procesamiento de datos en un <strong>60%</strong> con automatización de macros en Excel y flujos de Power Automate.",
+        j3_b3:       "Extracción, limpieza, transformación y análisis de datos de comercio exterior usando Excel, SQL y Python.",
+        j3_b4:       "Reportes ejecutivos mediante dashboards en Power BI presentados a la dirección.",
+        j4_role:     "Líder de Proyecto de Software",
+        j4_date:     "Feb 2020 – Sep 2020 · Fresnillo, Zac",
+        j4_b1:       "Lideré el desarrollo de un HRMS interno con JavaScript, Laravel, Git y SQL.",
+        j4_b2:       "Gestioné la comunicación entre el equipo técnico y la dirección; capacité a usuarios finales para la adopción del sistema.",
+        resume_label: "04 — Currículum",
+        resume_title: "Educación y Certificaciones",
+        edu_degree:  "Ingeniería en Sistemas Computacionales",
+        cert_link:   "Ver credencial →",
+        dl_title:    "Descargar currículum completo",
+        dl_sub:      "PDF · Actualizado 2025",
+        dl_btn:      "Descargar CV",
+        contact_label: "05 — Contacto",
+        contact_title: "Conectemos",
+        contact_sub:   "Disponible para roles de Data Engineer en remoto. Escríbeme por email o LinkedIn.",
+        footer_text: "Construido con intención.",
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (i18n[lang][key] !== undefined) {
+          el.innerHTML = i18n[lang][key];
         }
+      });
+    }
 
-        // Establece el idioma predeterminado a español
-        setLanguage('es');
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    setLang('en');
+  </script>
+
 </body>
 </html>
